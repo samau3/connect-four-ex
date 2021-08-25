@@ -30,7 +30,7 @@ function makeBoard() {
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-  const htmlBoard = document.getElementById("board"); 
+  const htmlBoard = document.getElementById("board");
 
   // Create a table tr element with id = column-top, then add an click event listener
   const top = document.createElement("tr");
@@ -63,7 +63,14 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  return 0;
+  // using x, find last board[y]=== null
+  let cellPlacement;
+  for (let y = HEIGHT - 1; y >= 0; y--) {
+    if (board[y][x] === null) {
+      return cellPlacement = y;
+    }
+  }
+  return cellPlacement;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -74,8 +81,6 @@ function placeInTable(y, x) {
   div.classList.add("piece", `p${currPlayer}`);
   let cell = document.getElementById(`${y}-${x}`);
   cell.append(div);
-  console.log("div: ",div);
-  //how to identify the correct td cell
 }
 
 /** endGame: announce game end */
@@ -108,14 +113,31 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-  let  name = board.every()
-  
-  if(name){
+
+  // force filling out of board
+  // for (let i = 0; i < HEIGHT; i++) {
+  //   for (let j = 0; j < WIDTH; j++) {
+  //     board[i][j] = 1;
+  //     console.log('it worked')
+  //   }
+  // }
+
+  let isBoardFilled = board.every(row => {
+    return row.every(cell => {
+      return cell !== null;
+    });
+  });
+
+  // console.log(`Board FIlled? ${isBoardFilled}`)
+
+  if (isBoardFilled) {
     endGame();
   }
-  
+
   // switch players
   // TODO: switch currPlayer 1 <-> 2
+  currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;
+  // console.log(currPlayer)
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -158,6 +180,4 @@ function checkForWin() {
 }
 
 makeBoard();
-console.log(board);
-
 makeHtmlBoard();
