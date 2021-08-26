@@ -154,6 +154,31 @@ function checkForWin() {
     // TODO: Check four cells to see if they're all legal & all color of current
     // player
     //
+    // add a counter to track max matching pieces/cells
+    // if y < HEIGHT && x < WIDTH 
+
+    // tried to see if using .every was possible
+    // if (cells.every(coordPair => {
+    //   return coordPair.every(positionValue => {
+    //     return if (positionValue < HEIGHT && positionValue < WIDTH);
+    //   });
+    // });
+    // )
+
+    for (let coordPair = 0; coordPair < cells.length; coordPair++) {
+      // for (let positionValue = 0; positionValue < 2; positionValue++) {
+      //   if (positionValue < HEIGHT && positionValue < WIDTH)
+      // }
+      let y = cells[coordPair][0]
+      let x = cells[coordPair][1]
+
+      // if valid, then check the pairs for the piece
+
+      // if (y < HEIGHT && x < WIDTH) {
+      //   for ()
+      // }
+
+    }
 
   }
 
