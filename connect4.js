@@ -77,7 +77,7 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
-  let div = document.createElement("div");
+  let div = document.createElement("div"); //rename div name to be more descriptive (e.g. pieceArea)
   div.classList.add("piece", `p${currPlayer}`);
   let cell = document.getElementById(`${y}-${x}`);
   cell.append(div);
@@ -137,7 +137,7 @@ function handleClick(evt) {
 
   // switch players
   // TODO: switch currPlayer 1 <-> 2
-  currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;
+  currPlayer === 1 ? currPlayer = 2 : currPlayer = 1; //redefine currPlayer to be result of ternary
   // console.log(currPlayer)
 }
 
@@ -162,13 +162,12 @@ function checkForWin() {
     //   });
     // });
     // )
+
     const counter = {};
 
     for (let coordPair = 0; coordPair < cells.length; coordPair++) {
-      // for (let positionValue = 0; positionValue < 2; positionValue++) {
-      //   if (positionValue < HEIGHT && positionValue < WIDTH)
-      // }
-      let y = cells[coordPair][0]
+
+      let y = cells[coordPair][0] // consider array desctructuring
       let x = cells[coordPair][1]
 
       // if valid, then check the pairs for the piece
@@ -197,6 +196,7 @@ function checkForWin() {
 
       // find winner (only checking each win-possibility as needed)
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
+        console.log('THere is a winner')
         return true;
       }
     }
