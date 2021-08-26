@@ -87,6 +87,7 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
+
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -153,9 +154,6 @@ function checkForWin() {
 
     // TODO: Check four cells to see if they're all legal & all color of current
     // player
-    //
-    // add a counter to track max matching pieces/cells
-    // if y < HEIGHT && x < WIDTH 
 
     // tried to see if using .every was possible
     // if (cells.every(coordPair => {
@@ -164,6 +162,7 @@ function checkForWin() {
     //   });
     // });
     // )
+    const counter = {};
 
     for (let coordPair = 0; coordPair < cells.length; coordPair++) {
       // for (let positionValue = 0; positionValue < 2; positionValue++) {
@@ -174,12 +173,11 @@ function checkForWin() {
 
       // if valid, then check the pairs for the piece
 
-      // if (y < HEIGHT && x < WIDTH) {
-      //   for ()
-      // }
-
+      if (y < HEIGHT && x < WIDTH) {
+        counter[board[y][x]] = (counter[board[y][x]] || 0) + 1;
+      }
     }
-
+    return (counter['1'] === 4 || counter['2'] === 4)
   }
 
   // using HEIGHT and WIDTH, generate "check list" of coordinates
